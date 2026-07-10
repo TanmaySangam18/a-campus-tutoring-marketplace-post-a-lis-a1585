@@ -140,7 +140,7 @@ export default function Home() {
     <div className="min-h-screen bg-zinc-50">
       <main className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
         <header className="max-w-2xl space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600">
+          <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
             Campus marketplace
           </p>
           <h1 className="text-3xl font-semibold leading-tight tracking-tight text-zinc-900 sm:text-4xl">
@@ -169,7 +169,7 @@ export default function Home() {
               <div className="space-y-1.5">
                 <label
                   htmlFor="tutorName"
-                  className="text-sm font-medium text-zinc-700"
+                  className="text-xs font-semibold uppercase tracking-wide text-zinc-500"
                 >
                   Your name
                 </label>
@@ -188,7 +188,7 @@ export default function Home() {
               <div className="space-y-1.5">
                 <label
                   htmlFor="subject"
-                  className="text-sm font-medium text-zinc-700"
+                  className="text-xs font-semibold uppercase tracking-wide text-zinc-500"
                 >
                   Subject
                 </label>
@@ -206,7 +206,7 @@ export default function Home() {
               <div className="space-y-1.5">
                 <label
                   htmlFor="hourlyRate"
-                  className="text-sm font-medium text-zinc-700"
+                  className="text-xs font-semibold uppercase tracking-wide text-zinc-500"
                 >
                   Rate ($ / hour)
                 </label>
@@ -226,7 +226,7 @@ export default function Home() {
               <div className="space-y-1.5">
                 <label
                   htmlFor="availableSlot"
-                  className="text-sm font-medium text-zinc-700"
+                  className="text-xs font-semibold uppercase tracking-wide text-zinc-500"
                 >
                   Available slot
                 </label>
@@ -244,7 +244,7 @@ export default function Home() {
               <div className="space-y-1.5">
                 <label
                   htmlFor="description"
-                  className="text-sm font-medium text-zinc-700"
+                  className="text-xs font-semibold uppercase tracking-wide text-zinc-500"
                 >
                   A note for students (optional)
                 </label>
@@ -298,10 +298,16 @@ export default function Home() {
             )}
 
             {loading && (
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+                role="status"
+                aria-live="polite"
+              >
+                <span className="sr-only">Loading nearby tutoring slots…</span>
                 {[0, 1, 2, 3].map((key) => (
                   <div
                     key={key}
+                    aria-hidden="true"
                     className="h-44 animate-pulse rounded-xl border border-zinc-200 bg-zinc-100"
                   />
                 ))}
@@ -342,7 +348,7 @@ export default function Home() {
                   >
                     <div className="space-y-3">
                       <div className="flex items-start justify-between gap-3">
-                        <span className="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-700">
+                        <span className="inline-flex items-center rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700">
                           {listing.subject}
                         </span>
                         <span className="text-sm font-semibold text-zinc-900">
@@ -354,7 +360,7 @@ export default function Home() {
                         <h3 className="text-base font-semibold text-zinc-900">
                           {listing.tutorName}
                         </h3>
-                        <p className="mt-0.5 text-sm text-zinc-500">
+                        <p className="mt-1 text-sm text-zinc-500">
                           {listing.availableSlot}
                         </p>
                       </div>
@@ -370,7 +376,7 @@ export default function Home() {
                       type="button"
                       onClick={() => handleBook(listing.id)}
                       disabled={bookingId === listing.id}
-                      className="w-full rounded-lg border border-zinc-200 py-2 text-sm font-semibold text-zinc-900 transition duration-150 hover:border-indigo-600 hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="w-full rounded-lg border border-zinc-200 py-2 text-sm font-semibold text-zinc-900 transition duration-150 hover:border-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {bookingId === listing.id
                         ? "Booking…"
